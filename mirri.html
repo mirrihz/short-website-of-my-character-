@@ -1,0 +1,562 @@
+        <!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кінг Д. Міррі — Досьє</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#0E1B2B;
+    --ink-deep:#081019;
+    --parchment:#ECE0C4;
+    --parchment-dim:#DCCDA4;
+    --copper:#C2632E;
+    --brass:#BD9544;
+    --moss:#5C7A66;
+    --text-dark:#241A0F;
+    --text-light:#F1E9D3;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(189,148,68,0.10), transparent 60%),
+      var(--ink);
+    background-attachment:fixed;
+    color:var(--text-light);
+    font-family:'Spectral', Georgia, serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--copper); color:var(--text-light); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  h1,h2,.display{
+    font-family:'Pirata One', serif;
+    letter-spacing:0.02em;
+    line-height:1.05;
+    color:var(--parchment);
+    margin:0;
+  }
+
+  hr.rule{
+    border:none;
+    border-top:1px solid rgba(189,148,68,0.35);
+    margin:48px 0;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    padding:72px 0 40px;
+    text-align:center;
+    position:relative;
+  }
+
+  .crest{
+    width:96px;
+    height:96px;
+    margin:0 auto 22px;
+    opacity:0.92;
+  }
+
+  .portrait-frame{
+    position:relative;
+    width:min(280px, 70vw);
+    margin:0 auto 26px;
+    padding:10px;
+    background:var(--parchment);
+    box-shadow:0 18px 36px -14px rgba(0,0,0,0.6);
+  }
+
+  .portrait-frame::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(36,26,15,0.4);
+    pointer-events:none;
+  }
+
+  .portrait-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:saturate(1.04) contrast(1.02);
+  }
+
+  .crest-stamp{
+    position:absolute;
+    bottom:-16px;
+    right:-16px;
+    width:54px;
+    height:54px;
+    background:var(--ink);
+    border:1px solid var(--brass);
+    border-radius:50%;
+    padding:9px;
+  }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 8vw, 4.6rem);
+    margin:14px 0 6px;
+  }
+
+  .hero .tagline{
+    font-style:italic;
+    color:var(--parchment-dim);
+    font-size:1.05rem;
+    max-width:480px;
+    margin:0 auto 28px;
+  }
+
+  .ledger{
+    display:inline-grid;
+    grid-template-columns:repeat(2, auto);
+    gap:6px 28px;
+    text-align:left;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    margin-top:12px;
+    padding:18px 28px;
+    border:1px solid rgba(189,148,68,0.4);
+    background:rgba(189,148,68,0.05);
+  }
+
+  .ledger dt{ color:var(--brass); text-transform:uppercase; letter-spacing:0.08em; }
+  .ledger dd{ margin:0; color:var(--text-light); }
+
+  /* ---------- SECTIONS ---------- */
+
+  section{ padding:20px 0; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:28px;
+  }
+
+  .section-head h2{
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  .section-head .num{
+    font-family:'Space Mono', monospace;
+    color:var(--copper);
+    font-size:0.85rem;
+  }
+
+  /* ---------- CHARACTER QUOTE BLOCK ---------- */
+
+  .logbook{
+    background:var(--parchment);
+    color:var(--text-dark);
+    padding:32px 36px;
+    box-shadow:0 14px 30px -10px rgba(0,0,0,0.5);
+    position:relative;
+  }
+
+  .logbook::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px dashed rgba(36,26,15,0.25);
+    pointer-events:none;
+  }
+
+  .logbook p{ margin:0 0 14px; font-size:1.02rem; }
+  .logbook p:last-child{ margin-bottom:0; }
+
+  .logbook .sign{
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--copper);
+    margin-top:18px;
+  }
+
+  /* ---------- APPEARANCE STATS ---------- */
+
+  .stats{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 32px;
+  }
+
+  .stats li{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    border-bottom:1px solid rgba(189,148,68,0.18);
+    padding-bottom:12px;
+  }
+
+  .stats .swatch{
+    width:18px; height:18px;
+    border-radius:50%;
+    flex-shrink:0;
+    margin-top:5px;
+    border:1px solid rgba(0,0,0,0.25);
+  }
+
+  .stats .label{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--brass);
+    display:block;
+    margin-bottom:2px;
+  }
+
+  .stats .value{ color:var(--text-light); }
+
+  /* ---------- WEAPON / FRUIT ---------- */
+
+  .arsenal{
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:22px;
+  }
+
+  @media (max-width:680px){
+    .arsenal{ grid-template-columns:1fr; }
+    .stats{ grid-template-columns:1fr; }
+  }
+
+  .card{
+    background:rgba(236,224,196,0.04);
+    border:1px solid rgba(189,148,68,0.3);
+    padding:26px;
+  }
+
+  .card h3{
+    font-family:'Pirata One', serif;
+    color:var(--copper);
+    font-size:1.5rem;
+    margin:0 0 10px;
+  }
+
+  .card p{ margin:0; color:var(--parchment-dim); font-size:0.96rem; }
+
+  .fruit-card{ position:relative; }
+
+  .fruit-name{
+    font-family:'Pirata One', serif;
+    font-size:1.6rem;
+    color:var(--parchment);
+    margin-bottom:4px;
+  }
+
+  .fruit-type{
+    font-family:'Space Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:14px;
+  }
+
+  /* ---------- CLOCK SIGNATURE ---------- */
+
+  .clock-rig{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    margin-top:22px;
+  }
+
+  .clock-face{
+    width:170px;
+    height:170px;
+  }
+
+  .hand{
+    transform-origin:85px 85px;
+    animation:tick 8s linear infinite;
+  }
+
+  @keyframes tick{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+  }
+
+  .tech-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .tech-btn{
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-light);
+    background:transparent;
+    border:1px solid var(--brass);
+    padding:9px 16px;
+    cursor:pointer;
+    transition:background 0.2s, color 0.2s;
+  }
+
+  .tech-btn:hover, .tech-btn:focus-visible{
+    background:var(--copper);
+    border-color:var(--copper);
+    color:var(--text-light);
+  }
+
+  .clock-caption{
+    font-size:0.82rem;
+    color:var(--parchment-dim);
+    text-align:center;
+    min-height:1.4em;
+  }
+
+  /* ---------- FUN FACT ---------- */
+
+  .snail-note{
+    border-left:3px solid var(--moss);
+    padding:18px 22px;
+    background:rgba(92,122,102,0.08);
+    font-size:0.95rem;
+  }
+
+  .snail-note .eyebrow{ color:var(--moss); }
+
+  .decode{
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    color:var(--parchment);
+    margin-top:10px;
+    display:block;
+  }
+
+  .decode b{ color:var(--copper); }
+
+  /* ---------- FOOTER ---------- */
+
+  footer{
+    text-align:center;
+    padding:50px 0 60px;
+    color:var(--parchment-dim);
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hand{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="eyebrow">Досьє · Розділ 2 · Класифікація: Парамеція (легендарна)</div>
+
+      <div class="portrait-frame">
+        <img src="mirri-portrait.jpg" alt="Кінг Д. Міррі — портрет">
+        <svg class="crest-stamp" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="46" stroke="#BD9544" stroke-width="2"/>
+          <path d="M30 70 L66 30" stroke="#C2632E" stroke-width="5" stroke-linecap="round"/>
+          <path d="M30 70 L24 76 M30 70 L36 64" stroke="#C2632E" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="13" stroke="#ECE0C4" stroke-width="2.5"/>
+          <line x1="50" y1="50" x2="50" y2="41" stroke="#ECE0C4" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="50" y1="50" x2="57" y2="50" stroke="#ECE0C4" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1>Кінг Д. Міррі</h1>
+      <p class="tagline">Не визнає правил. Аналізує все наперед — і все одно діє за власним годинником.</p>
+
+      <dl class="ledger">
+        <dt>Вік</dt><dd>20 (на кінець 2 розділу)</dd>
+        <dt>День народження</dt><dd>10 лютого</dd>
+        <dt>Зріст</dt><dd>175–180 см</dd>
+        <dt>Диявольський фрукт</dt><dd>Джікан Джікан но Мі</dd>
+      </dl>
+    </section>
+
+    <hr class="rule">
+
+    <!-- CHARACTER -->
+    <section id="character">
+      <div class="section-head">
+        <span class="num">01</span>
+        <h2>Характер</h2>
+      </div>
+
+      <div class="logbook">
+        <p>Правила для нього — це орієнтир, а не межа. Перш ніж щось зробити, він встигає прорахувати три варіанти наперед — і все одно вибере четвертий, свій власний.</p>
+        <p>Настирний до впертості: якщо вирішив — буде діяти, навіть коли весь світ каже «ні». У ньому впізнають одночасно безтурботну сміливість Шанкса, тверду відданість справі Сабо та гарячу, нестримну волю Ейса — суміш, що рідко залишає когось байдужим.</p>
+        <div class="sign">— з корабельного журналу</div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- APPEARANCE -->
+    <section id="appearance">
+      <div class="section-head">
+        <span class="num">02</span>
+        <h2>Зовнішність</h2>
+      </div>
+
+      <ul class="stats">
+        <li>
+          <span class="swatch" style="background:#BD9544"></span>
+          <span><span class="label">Зріст</span><span class="value">175–180 см</span></span>
+        </li>
+        <li>
+          <span class="swatch" style="background:#C2632E"></span>
+          <span><span class="label">Волосся</span><span class="value">Довге, риже, кучеряве</span></span>
+        </li>
+        <li>
+          <span class="swatch" style="background:#5C7A66"></span>
+          <span><span class="label">Очі</span><span class="value">Зелені</span></span>
+        </li>
+        <li>
+          <span class="swatch" style="background:#ECE0C4"></span>
+          <span><span class="label">Окуляри</span><span class="value">Круглі</span></span>
+        </li>
+        <li>
+          <span class="swatch" style="background:#D9A65E"></span>
+          <span><span class="label">Шкіра</span><span class="value">Ластовиння</span></span>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="rule">
+
+    <!-- WEAPON & FRUIT -->
+    <section id="arsenal">
+      <div class="section-head">
+        <span class="num">03</span>
+        <h2>Зброя та сила</h2>
+      </div>
+
+      <div class="arsenal">
+        <div class="card">
+          <h3>Катана</h3>
+          <p>Основна зброя в ближньому бою — клинок, з яким він почувається впевненіше, ніж із будь-якими словами під час перемовин.</p>
+        </div>
+
+        <div class="card fruit-card">
+          <span class="fruit-name">Джікан Джікан но Мі</span>
+          <span class="fruit-type">Фрукт часу · Легендарна парамеція</span>
+          <p>Майже неможливий до пробудження фрукт із практично безмежним потенціалом. Дає владу над плином часу навколо себе та інших.</p>
+
+          <div class="clock-rig">
+            <svg class="clock-face" viewBox="0 0 170 170">
+              <circle cx="85" cy="85" r="78" stroke="#BD9544" stroke-width="1.5" fill="none"/>
+              <g stroke="#BD9544" stroke-width="2">
+                <line x1="85" y1="12" x2="85" y2="22"/>
+                <line x1="85" y1="148" x2="85" y2="158"/>
+                <line x1="12" y1="85" x2="22" y2="85"/>
+                <line x1="148" y1="85" x2="158" y2="85"/>
+              </g>
+              <line id="clockHand" class="hand" x1="85" y1="85" x2="85" y2="38" stroke="#C2632E" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="85" cy="85" r="3.5" fill="#ECE0C4"/>
+            </svg>
+
+            <div class="tech-buttons">
+              <button class="tech-btn" data-speed="2">Прискорення</button>
+              <button class="tech-btn" data-speed="20">Сповільнення</button>
+              <button class="tech-btn" data-speed="0">Зупинка</button>
+            </div>
+            <div class="clock-caption" id="clockCaption">Наведіть курсор на техніку, щоб побачити її дію.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- FUN FACT -->
+    <section id="fact">
+      <div class="section-head">
+        <span class="num">04</span>
+        <h2>Цікавий факт</h2>
+      </div>
+
+      <div class="snail-note">
+        <div class="eyebrow">Перехоплене повідомлення транспондер-равлика</div>
+        <p>Ім'я не випадкове — у ньому зашифроване трохи реальності.</p>
+        <span class="decode"><b>Кінг</b> — буквальний переклад прізвища автора.</span>
+        <span class="decode"><b>Міррі</b> — його власний псевдонім.</span>
+        <span class="decode"><b>Д.</b> — без особливої причини: просто так захотілося.</span>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>Файл закрито · продовження слідкуйте у наступних розділах</footer>
+
+<script>
+  const hand = document.getElementById('clockHand');
+  const caption = document.getElementById('clockCaption');
+  const defaultDuration = 8;
+
+  const messages = {
+    "2": "Прискорення: секунди для всіх навколо летять у рази швидше.",
+    "20": "Сповільнення: час тягнеться, кожен рух застигає у в'язкості.",
+    "0": "Зупинка: годинник більше не рухається — все навколо завмирає."
+  };
+
+  document.querySelectorAll('.tech-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      const speed = btn.dataset.speed;
+      if (speed === "0") {
+        hand.style.animationPlayState = 'paused';
+      } else {
+        hand.style.animationPlayState = 'running';
+        hand.style.animationDuration = speed + 's';
+      }
+      caption.textContent = messages[speed];
+    });
+    btn.addEventListener('mouseleave', () => {
+      hand.style.animationPlayState = 'running';
+      hand.style.animationDuration = defaultDuration + 's';
+      caption.textContent = 'Наведіть курсор на техніку, щоб побачити її дію.';
+    });
+    btn.addEventListener('focus', () => btn.dispatchEvent(new Event('mouseenter')));
+    btn.addEventListener('blur', () => btn.dispatchEvent(new Event('mouseleave')));
+  });
+</script>
+
+</body>
+</html>
